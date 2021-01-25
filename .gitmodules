@@ -1,0 +1,3 @@
+[submodule "u_stdlib"]
+	path = u_stdlib
+	url = https://github.com/Denis-Maksimov/u_stdlib

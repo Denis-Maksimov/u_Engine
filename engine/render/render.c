@@ -3,7 +3,7 @@
 
 
 
-inline void render_init()
+void render_init()
 {
     glutDisplayFunc(renderScene);
     glutIdleFunc(renderScene);
@@ -58,6 +58,9 @@ void renderScene()
 		glVertex3f( 100.0f, 0.0f,  100.0f);
 		glVertex3f( 100.0f, 0.0f, -100.0f);
 	glEnd();
+
+	
+	// glTranslatef(5.0, 0, 5.0);
 	// Нарисуем 64 снеговика
 	for (int i = -4; i < 4; i++)
 		for (int j=-4; j < 4; j++)
@@ -70,3 +73,20 @@ void renderScene()
  
 	glutSwapBuffers();
 }
+
+
+void computePos() 
+{
+	engine* en = engine_get_handle();
+	en->x += en->deltaMove * en->lx * 0.1f;
+	en->z += en->deltaMove * en->lz * 0.1f;
+}
+ 
+void computeDir()
+{
+	engine* en = engine_get_handle();
+	en->angle += en->deltaAngle;
+	en->lx = sin(en->angle);
+	en->lz = -cos(en->angle);
+}
+ 

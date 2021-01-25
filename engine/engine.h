@@ -3,13 +3,13 @@
 
 
 #include "api.h"
-#include "render/render.h"
+
 
 #ifdef __cplusplus
 extern "C"{
-#endif // DEBUG
+#endif 
 
-typedef struct engine_t{
+struct engine_t{
 
 	GLboolean init; //флаг инициализации
 	//------------------------------------
@@ -30,20 +30,23 @@ typedef struct engine_t{
 	//  void (*_releaseKey)(int key, int x, int y);	
 	//  void (*_renderScene)(void);
 
-}engine;
+};
 
+#include "render/render.h"
+#include "kb/kb.h"
 
-inline engine* engine_get_handle();
+typedef struct engine_t engine;
+
+engine* engine_get_handle();
 
 
 
 GLvoid reshape(int w, int h);
 engine* engine_init();
 
-void pressKey(int key, int xx, int yy) ;
-void releaseKey(int key, int x, int y) ;
-void computePos() ;
-void computeDir();
+// void pressKey(int key, int xx, int yy) ;
+// void releaseKey(int key, int x, int y) ;
+
 void renderScene();
 
 #ifdef __cplusplus

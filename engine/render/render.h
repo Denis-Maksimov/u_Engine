@@ -2,8 +2,17 @@
 #define __RENDER_H__
 #include <engine.h>
 
+#ifdef __cplusplus
+extern "C"{
+#endif 
 
-inline void render_init();
+void computePos() ;
+void computeDir();
 
+void render_init();
+
+#ifdef __cplusplus
+}
+#endif // DEBUG
 
 #endif // __RENDER_H__

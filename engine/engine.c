@@ -77,65 +77,24 @@ engine* engine_init()
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);   // для работы сглаживания и задается
                                                            // способ смешения
 
+		keyboard_init();
 	  // регистрация вызовов
 	  render_init();
 	glutReshapeFunc(reshape);
-	glutSpecialFunc(pressKey);		
-		// Новые функции для регистрации
-	glutIgnoreKeyRepeat(1);
-	glutSpecialUpFunc(releaseKey);	
+
+	
+	
 	return &u_this;									
 }
-inline engine* engine_get_handle()
+engine* engine_get_handle()
 {
 	return &u_this;
 }
 
 
 
-void pressKey(int key, int xx, int yy) 
-{
- 
-	
-		if (key==GLUT_KEY_LEFT)
-			u_this.deltaAngle = -0.01f;
-		if(key==GLUT_KEY_RIGHT)
-			u_this.deltaAngle = 0.01f;
-		if(key==GLUT_KEY_UP)
-			u_this.deltaMove = 0.5f;
-		if(key==GLUT_KEY_DOWN)
-			u_this.deltaMove = -0.5f;
-	
-}
- 
-void releaseKey(int key, int x, int y) 
-{
- 
-	
-		if((key==GLUT_KEY_LEFT )||
-		   (key==GLUT_KEY_RIGHT) )
-			u_this.deltaAngle = 0.0f;
-		if(key==GLUT_KEY_UP||
-		    key==GLUT_KEY_DOWN) 
-			u_this.deltaMove = 0;
-        if(key==GLUT_KEY_F1) 
-			u_this.deltaMove = 0;
-	
-}
 
 
-void computePos() 
-{
-	u_this.x += u_this.deltaMove * u_this.lx * 0.1f;
-	u_this.z += u_this.deltaMove * u_this.lz * 0.1f;
-}
- 
-void computeDir()
-{
-	u_this.angle += u_this.deltaAngle;
-	u_this.lx = sin(u_this.angle);
-	u_this.lz = -cos(u_this.angle);
-}
- 
+
 
  

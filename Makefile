@@ -3,6 +3,7 @@
 CFLAGS += -I${PWD}/u_stdlib 
 CFLAGS += -I${PWD}/engine 
 CFLAGS += -I${PWD}/u_stdlib/u_stdlib 
+CFLAGS+= -g 
 CPPFLAGS += ${CFLAGS}
 export CFLAGS
 

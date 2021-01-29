@@ -1,6 +1,13 @@
 #include "render.h"
 
 
+void render_push(){
+	
+}
+
+
+
+
 
 
 void render_init()
@@ -35,7 +42,7 @@ void drawSnowMan()
 
 void renderScene()
 {
-
+	// glMatrixMode(GL_MODELVIEW_MATRIX)
     engine* en=engine_get_handle();
     // glutSetWindow();
 	if (en->deltaMove)

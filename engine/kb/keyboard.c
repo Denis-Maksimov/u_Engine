@@ -3,7 +3,7 @@
 
 
 void move_forward(engine* en,int x, int y){
-    puts("fwd");
+    // puts("fwd");
     en->deltaMove = 0.5f;
 }
 void move_backward(engine* en,int x, int y){
@@ -16,7 +16,7 @@ void rotate_left(engine* en,int x, int y)
 }
 void rotate_right(engine* en,int x, int y)
 {
-    en->deltaAngle = -0.01f;
+    en->deltaAngle = 0.01f;
 }
 
 void rotate_stop(engine* en,int x, int y){
@@ -25,7 +25,9 @@ void rotate_stop(engine* en,int x, int y){
 void move_stop(engine* en,int x, int y){
     en->deltaMove = 0;
 }
-
+void speed_up(engine* en,int x, int y){
+    en->deltaMove *= 5.f;
+}
 
 
 
@@ -49,8 +51,9 @@ static void key_process(int key, int xx, int yy, enum k_type type)
 {
     
     engine* en=engine_get_handle();
-
-    cb a=get_data_by_key(ht_key[type], key);
+    // printf("%d\n",key);
+    // hashprint(ht_key[type]); 
+    cb a=u_get_data_by_key(ht_key[type], key);
     // printf("key %d\n",key);
     if(a){
         // puts("call");
@@ -63,8 +66,9 @@ void init_key_funcs()
 {
     key_push(GLUT_KEY_LEFT,  rotate_left, k_press);
     key_push(GLUT_KEY_RIGHT, rotate_right, k_press);
-    key_push(GLUT_KEY_UP,    move_stop,   k_press);
-    key_push(GLUT_KEY_DOWN,  move_stop,   k_press);
+    key_push(GLUT_KEY_UP,    move_forward,   k_press);
+    key_push(GLUT_KEY_DOWN,  move_backward,   k_press);
+    key_push(114,speed_up,k_press);
 
     key_push(GLUT_KEY_LEFT,  rotate_stop, k_release);
     key_push(GLUT_KEY_RIGHT, rotate_stop, k_release);
@@ -89,7 +93,7 @@ void pressKey(int key, int x, int y)
 void releaseKey(int key, int x, int y) 
 {
         engine* en=engine_get_handle();
-        key_process(key, x, y, k_press);
+        key_process(key, x, y, k_release);
 	
 }
 
